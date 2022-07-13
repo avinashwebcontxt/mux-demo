@@ -1,8 +1,9 @@
+import { Fragment, useEffect, useState } from "react";
 import { createStudio } from "@mux/studio-embed";
-import { useEffect, useState } from "react";
 import "../../css/style.css";
 
 export default function Studio() {
+	
 	const [token, setToken] = useState('');
 
 	useEffect(() => {
@@ -15,19 +16,19 @@ export default function Studio() {
 			}).then((studio) => {
 				// you can use or store the studio instance here
 
-				// console.log("Studio Data", studio);
+				console.log("Studio Data", studio);
 
-				// studio.on('PARTICIPANT_JOINED', (onJoin) => {
-				// 	console.log("onJoin", onJoin);
-				// });
+				studio.on('PARTICIPANT_JOINED', (onJoin) => {
+					console.log("onJoin", onJoin);
+				});
 
-				// studio.on('PARTICIPANT_LEFT', (onLeft) => {
-				// 	console.log("onLeft", onLeft);
-				// });
+				studio.on('PARTICIPANT_LEFT', (onLeft) => {
+					console.log("onLeft", onLeft);
+				});
 
-				// studio.on('NAME_CHANGED', (onNameChange) => {
-				// 	console.log("onNameChange", onNameChange);
-				// });
+				studio.on('NAME_CHANGED', (onNameChange) => {
+					console.log("onNameChange", onNameChange);
+				});
 			}).catch((err) => {
 				console.log("err", err);
 			});
@@ -47,8 +48,8 @@ export default function Studio() {
 	}, []);
 
 	return (
-		<>
+		<Fragment>
 			<div id="my-studio-container"></div>
-		</>
+		</Fragment>
 	);
 }
