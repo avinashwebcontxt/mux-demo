@@ -2,7 +2,6 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const route = express.Router();
 
-// route.get("/getToken", async (req, res) => {
 route.post("/getToken", async (req, res) => {
     const {pid, role} = req.body;
     
