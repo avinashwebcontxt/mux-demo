@@ -11,7 +11,12 @@ export default function Studio() {
 			createStudio(token, "#my-studio-container", {
 				// autoSize: false, // disable the default auto sizing
 				background: "https://staging-api.mixhubb.com/system/media/STAGE/audi_06.png",
-				overlay: 'https://i.ibb.co/d5g8f6L/overlay.png'
+				overlay: 'https://i.ibb.co/d5g8f6L/overlay.png',
+				theme: {
+					background: '#FFFFFF',
+					accent: '#641BDC',
+					error: '#FB3C4E',
+				}
 			}).then((studio) => {
 				// you can use or store the studio instance here
 
