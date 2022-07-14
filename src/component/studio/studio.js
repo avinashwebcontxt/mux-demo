@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { createStudio } from "@mux/studio-embed";
 import "../../css/style.css";
+import Upload from "../uploadFile/upload";
 
 export default function Studio() {
 	
@@ -10,7 +11,7 @@ export default function Studio() {
 		if (token) {
 			// token is the user's JWT you made earlier
 			createStudio(token, "#my-studio-container", {
-				// autoSize: false, // disable the default auto sizing
+				autoSize: false, // disable the default auto sizing
 				background: "https://staging-api.mixhubb.com/system/media/STAGE/audi_06.png",
 				overlay: 'https://i.ibb.co/d5g8f6L/overlay.png',
 				theme: {
@@ -34,6 +35,14 @@ export default function Studio() {
 				studio.on('NAME_CHANGED', (onNameChange) => {
 					console.log("onNameChange", onNameChange);
 				});
+
+				studio.on('BROADCAST_STARTED', (onBroadcastStarted) => {
+					console.log("onBroadcastStarted", onBroadcastStarted);
+				});
+
+				studio.on('BROADCAST_ENDED', (onBroadcastEnded) => {
+					console.log("onBroadcastEnded", onBroadcastEnded);
+				});
 			}).catch((err) => {
 				console.log("err", err);
 			});
@@ -55,6 +64,7 @@ export default function Studio() {
 	return (
 		<Fragment>
 			<div id="my-studio-container"></div>
+			<Upload />
 		</Fragment>
 	);
 }

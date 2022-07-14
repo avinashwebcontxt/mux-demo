@@ -1,27 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
-import Studio from './component/studio/studio';
+import Routes from "./routers/routers";
+import Context from "./context/context";
+import { useState } from 'react';
+
+const { Provider } = Context;
 
 function App() {
-  return (
-    <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-      <Studio />
-    </div>
-  );
+
+	const [layOut, setLayOut] = useState({
+		backgroundUrl: "", overlayUrl: "", pushBg: false, pushOverLay: false
+	});
+
+	return (
+		<Provider value={{
+			layOut,
+			setLayOut
+		}}>
+			<Routes />
+		</Provider>
+	);
 }
 
 export default App;
