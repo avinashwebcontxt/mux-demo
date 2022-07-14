@@ -1,22 +1,21 @@
 import './App.css';
-import Routes from "./routers/routers";
+import Routers from "./routers/routers";
 import Context from "./context/context";
-import { useState } from 'react';
+import { useReducer } from 'react';
+import { initialData,Reducer } from './globalStore/globalStore';
 
 const { Provider } = Context;
 
 function App() {
 
-	const [layOut, setLayOut] = useState({
-		backgroundUrl: "", overlayUrl: "", pushBg: false, pushOverLay: false
-	});
+	const [storeData, dispatch] = useReducer(Reducer, initialData);
 
 	return (
 		<Provider value={{
-			layOut,
-			setLayOut
+			storeData,
+			dispatch
 		}}>
-			<Routes />
+			<Routers />
 		</Provider>
 	);
 }
