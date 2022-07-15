@@ -1,24 +1,20 @@
 import { Fragment, useContext, useEffect, useState } from "react";
 import { createStudio } from "@mux/studio-embed";
-import "../../css/style.css";
-import Upload from "../uploadFile/upload";
+// import Upload from "../uploadFile/upload";
 import Context from "../../context/context";
+import "../../css/style.css";
 
-export default function Studio() {
+export default function Studio({role = 'guest'}) {
 
 	const [token, setToken] = useState('');
-	const [showUpload, setShowUpload] = useState(true);
-	const { storeData } = useContext(Context);
-
-	// console.log(storeData, "@@@@@@@@@@@@");
+	// const [showUpload, setShowUpload] = useState(true);
+	// const { storeData } = useContext(Context);
 
 	useEffect(() => {
-		console.log(storeData, "#################")
-
 		if (token) {
 			// token is the user's JWT you made earlier
 			createStudio(token, "#my-studio-container", {
-				autoSize: false, // disable the default auto sizing
+				// autoSize: false, // disable the default auto sizing
 				background: "https://staging-api.mixhubb.com/system/media/STAGE/audi_01.png",
 				overlay: 'https://i.ibb.co/d5g8f6L/overlay.png',
 				theme: {
@@ -29,7 +25,7 @@ export default function Studio() {
 			}).then((studio) => {
 				// you can use or store the studio instance here
 
-				console.log("Studio Data", studio);
+				// console.log("Studio Data", studio);
 
 				studio.on('PARTICIPANT_JOINED', (onJoin) => {
 					console.log("onJoin", onJoin);
@@ -41,7 +37,7 @@ export default function Studio() {
 
 				studio.on('NAME_CHANGED', (onNameChange) => {
 					console.log("onNameChange", onNameChange);
-					setShowUpload(false);
+					// setShowUpload(false);
 				});
 
 				studio.on('BROADCAST_STARTED', (onBroadcastStarted) => {
@@ -55,13 +51,14 @@ export default function Studio() {
 				console.log("err", err);
 			});
 		}
-	}, [token, storeData.pushBg]);
+	// }, [token, storeData.pushBg]);
+	}, [token]);
 
 	useEffect(() => {
 		const requestOptions = {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ pid: Math.random().toString(), role: "host" })
+			body: JSON.stringify({ pid: Math.random().toString(), role })
 		};
 
 		fetch("getToken", requestOptions).then((res) => res.json()).then(({ data }) => {
