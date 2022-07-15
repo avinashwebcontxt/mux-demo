@@ -1,8 +1,17 @@
 /* target the iframe directly */
+#my-studio-container {
+	width: 60%;
+    display: inline-block;
+}
+
 #my-studio-container iframe {
 	width: 100%;
-	max-width: 100%;
-    height: 100%;
+    height: 750px;
+}
+
+#upload-section {
+	width: 39%;
+    float: right;
 }
 
 /* #root {

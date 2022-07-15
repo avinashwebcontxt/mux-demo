@@ -1,27 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
-import Studio from './component/studio/studio';
+import Routers from "./routers/routers";
+import Context from "./context/context";
+import { useReducer } from 'react';
+import { initialData,Reducer } from './globalStore/globalStore';
+
+const { Provider } = Context;
 
 function App() {
-  return (
-    <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-      <Studio />
-    </div>
-  );
+
+	const [storeData, dispatch] = useReducer(Reducer, initialData);
+
+	return (
+		<Provider value={{
+			storeData,
+			dispatch
+		}}>
+			<Routers />
+		</Provider>
+	);
 }
 
 export default App;

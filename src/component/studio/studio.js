@@ -1,17 +1,25 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { createStudio } from "@mux/studio-embed";
 import "../../css/style.css";
+import Upload from "../uploadFile/upload";
+import Context from "../../context/context";
 
 export default function Studio() {
-	
+
 	const [token, setToken] = useState('');
+	const [showUpload, setShowUpload] = useState(true);
+	const { storeData } = useContext(Context);
+
+	// console.log(storeData, "@@@@@@@@@@@@");
 
 	useEffect(() => {
+		console.log(storeData, "#################")
+
 		if (token) {
 			// token is the user's JWT you made earlier
 			createStudio(token, "#my-studio-container", {
-				// autoSize: false, // disable the default auto sizing
-				background: "https://staging-api.mixhubb.com/system/media/STAGE/audi_06.png",
+				autoSize: false, // disable the default auto sizing
+				background: "https://staging-api.mixhubb.com/system/media/STAGE/audi_01.png",
 				overlay: 'https://i.ibb.co/d5g8f6L/overlay.png',
 				theme: {
 					background: '#FFFFFF',
@@ -33,12 +41,21 @@ export default function Studio() {
 
 				studio.on('NAME_CHANGED', (onNameChange) => {
 					console.log("onNameChange", onNameChange);
+					setShowUpload(false);
+				});
+
+				studio.on('BROADCAST_STARTED', (onBroadcastStarted) => {
+					console.log("onBroadcastStarted", onBroadcastStarted);
+				});
+
+				studio.on('BROADCAST_ENDED', (onBroadcastEnded) => {
+					console.log("onBroadcastEnded", onBroadcastEnded);
 				});
 			}).catch((err) => {
 				console.log("err", err);
 			});
 		}
-	}, [token]);
+	}, [token, storeData.pushBg]);
 
 	useEffect(() => {
 		const requestOptions = {
@@ -55,6 +72,7 @@ export default function Studio() {
 	return (
 		<Fragment>
 			<div id="my-studio-container"></div>
+			{/* {showUpload ? <Upload /> : null} */}
 		</Fragment>
 	);
 }
