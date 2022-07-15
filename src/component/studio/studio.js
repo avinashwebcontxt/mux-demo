@@ -1,14 +1,12 @@
-import { Fragment, useContext, useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { createStudio } from "@mux/studio-embed";
-// import Upload from "../uploadFile/upload";
-import Context from "../../context/context";
+import ChangeRole from "../changeRole/changeRole";
+
 import "../../css/style.css";
 
 export default function Studio({role = 'guest'}) {
 
 	const [token, setToken] = useState('');
-	// const [showUpload, setShowUpload] = useState(true);
-	// const { storeData } = useContext(Context);
 
 	useEffect(() => {
 		if (token) {
@@ -68,8 +66,8 @@ export default function Studio({role = 'guest'}) {
 
 	return (
 		<Fragment>
+			<ChangeRole />
 			<div id="my-studio-container"></div>
-			{/* {showUpload ? <Upload /> : null} */}
 		</Fragment>
 	);
 }
