@@ -56,7 +56,7 @@
 .MuxPlayer {
     width: 80%;
     margin: 0px auto;
-    height: 100vh;
+    height: 95vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -64,4 +64,15 @@
 .MuxPlayer mux-player { 
     width: 100%;
     height: calc(100vh - 120px);
+}
+
+.change-role {
+    float: right;
+    background: #bbbcbd;
+    width: 100%;
+}
+
+.change-role li a {
+    float: right;
+    margin-right: 10px;
 }

@@ -5,7 +5,7 @@ export default function ChangeRole() {
 
     return (
         <Fragment>
-            <div className="welcome-as">
+            <div className="welcome-as change-role">
                 <ul>
                     <li><Link to={"/"}>Change Role</Link></li>
                 </ul>
