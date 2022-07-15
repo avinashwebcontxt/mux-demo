@@ -1,10 +1,12 @@
 import { Fragment } from "react";
 import MuxPlayer from "@mux/mux-player-react";
+import ChangeRole from "../changeRole/changeRole";
 
 export default function Attendee() {
 
     return (
         <Fragment>
+            <ChangeRole />
             <div className="MuxPlayer">
                 <MuxPlayer
                     streamType="ll-live"
