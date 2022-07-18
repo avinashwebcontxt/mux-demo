@@ -14,7 +14,8 @@ export default function Studio({role = 'guest'}) {
 			createStudio(token, "#my-studio-container", {
 				// autoSize: false, // disable the default auto sizing
 				background: "https://staging-api.mixhubb.com/system/media/STAGE/audi_01.png",
-				overlay: 'https://i.ibb.co/d5g8f6L/overlay.png',
+				// overlay: 'https://i.ibb.co/d5g8f6L/overlay.png',
+				overlay: 'https://s3.ap-south-1.amazonaws.com/staging-media.mixhubb.com/bfd42275-af3c-4598-97cd-9b5b90470f1b/81e68208-26d7-4f92-b63b-b9b5f51304a0/LANDING_PAGE/1658122958.png',
 				theme: {
 					background: '#FFFFFF',
 					accent: '#641BDC',
