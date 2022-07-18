@@ -59,7 +59,7 @@ export default function Studio({role = 'guest'}) {
 			body: JSON.stringify({ pid: Math.random().toString(), role })
 		};
 
-		fetch("getToken", requestOptions).then((res) => res.json()).then(({ data }) => {
+		fetch("auth.php", requestOptions).then((res) => res.json()).then(({ data }) => {
 			setToken(data.token)
 		})
 	}, []);

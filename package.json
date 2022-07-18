@@ -2,7 +2,8 @@
   "name": "mux-demo",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:9000/",
+  "homepage": ".",
+  "proxy": "https://live.dreamcast.in/mux-demo/",
   "dependencies": {
     "@mux/mux-node": "5.1.0",
     "@mux/mux-player-react": "0.1.0-beta.23",
