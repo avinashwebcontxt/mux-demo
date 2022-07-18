@@ -6,7 +6,7 @@ import Attendee from "../component/attendee/attendee";
 
 const Routers = () => {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename="/mux-demo">
             <Routes>
                 <Route exact path="/" element={<Welcome />} />
                 <Route exact path="/host" element={<Host />} />
