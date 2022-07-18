@@ -5,13 +5,24 @@ import Speaker from "../component/speaker/speaker";
 import Attendee from "../component/attendee/attendee";
 
 const Routers = () => {
+
+    const routerArr = [
+        { path: "", Element: Welcome },
+        { path: "host", Element: Host },
+        { path: "speaker", Element: Speaker },
+        { path: "attendee", Element: Attendee },
+    ];
+
+    const { NODE_ENV,BASENAME } = process.env;
+    
     return (
-        <BrowserRouter basename="/mux-demo">
+        <BrowserRouter basename={NODE_ENV === "development" ? "" : BASENAME}>
             <Routes>
-                <Route exact path="/" element={<Welcome />} />
-                <Route exact path="/host" element={<Host />} />
-                <Route exact path="/speaker" element={<Speaker />} />
-                <Route exact path="/attendee" element={<Attendee />} />
+                {routerArr.map(({ path, Element }) => {
+                    return (
+                        <Route key={path} exact path={path} element={<Element />} />
+                    )
+                })}
             </Routes>
         </BrowserRouter>
     )
